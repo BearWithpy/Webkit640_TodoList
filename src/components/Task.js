@@ -83,7 +83,17 @@ function Task({ item, removeItem, updateItem }) {
                             : "flex items-center justify-between w-full p-[20px] text-xl "
                     }
                     type="text"
-                    disabled={mode ? "" : "disabled"}
+                    // disabled={mode ? "" : "disabled"}
+                    readOnly={mode ? "" : "readonly"}
+                    onClick={(e) => setMode(true)}
+                    onBlur={(e) => {
+                        setMode(!mode)
+                        if (mode) {
+                            item.taskText = taskText
+                            updateItem(item)
+                        } else {
+                        }
+                    }}
                 />
 
                 <BsFillTrashFill
