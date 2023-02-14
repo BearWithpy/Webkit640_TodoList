@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { BsFillTrashFill } from "react-icons/bs"
+import { AiTwotoneEdit } from "react-icons/ai"
 
 function Task({ item, removeItem, updateItem }) {
     // const [isChecked, setIsChecked] = useState(false)
@@ -50,8 +52,8 @@ function Task({ item, removeItem, updateItem }) {
     const [mode, setMode] = useState(false)
     const [taskText, setTaskText] = useState(item.taskText)
     return (
-        <li>
-            <p>
+        <li className="flex items-center text-white">
+            <div className=" bg-[#031956] text-black flex w-[70%] rounded-[15px] mb-[10px] flex-1">
                 <input
                     type="checkbox"
                     checked={item.isDone ? "checked" : ""}
@@ -75,18 +77,40 @@ function Task({ item, removeItem, updateItem }) {
                             }
                         }
                     }}
-                    className={item.isDone ? "checked" : ""}
+                    className={
+                        item.isDone
+                            ? "checked flex items-center justify-between w-full p-[20px] text-xl "
+                            : "flex items-center justify-between w-full p-[20px] text-xl "
+                    }
                     type="text"
                     disabled={mode ? "" : "disabled"}
                 />
-                <button
+
+                <BsFillTrashFill
+                    onClick={(e) => {
+                        removeItem(item.no)
+                    }}
+                    className="text-4xl cursor-pointer m-4 text-white"
+                />
+                {/* <button
                     onClick={(e) => {
                         removeItem(item.no)
                     }}
                 >
                     삭제
-                </button>
-                <button
+                </button> */}
+                <AiTwotoneEdit
+                    className="text-4xl cursor-pointer m-4 text-white"
+                    onClick={(e) => {
+                        setMode(!mode)
+                        if (mode) {
+                            item.taskText = taskText
+                            updateItem(item)
+                        } else {
+                        }
+                    }}
+                />
+                {/* <button
                     onClick={(e) => {
                         setMode(!mode)
                         if (mode) {
@@ -97,8 +121,8 @@ function Task({ item, removeItem, updateItem }) {
                     }}
                 >
                     {mode ? "수정완료" : "수정"}
-                </button>
-            </p>
+                </button> */}
+            </div>
         </li>
     )
 }

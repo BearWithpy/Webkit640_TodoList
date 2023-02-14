@@ -1,5 +1,6 @@
 import { useState } from "react"
-import "./App.css"
+// import "./styles/App.css"
+import "./styles/global.css"
 import LocalStorage from "./components/LocalStorage"
 import TodoFrame from "./components/TodoFrame"
 
@@ -140,7 +141,7 @@ function App() {
     /////////////////////////////////////////////////////////////
 
     return (
-        <>
+        <div className="w-screen flex justify-center py-5">
             <TodoFrame
                 appendItem={appendItem}
                 removeItem={removeItem}
@@ -148,7 +149,7 @@ function App() {
                 todoList={currTodoList}
                 // todoList={todoList}
             />
-        </>
+        </div>
     )
 }
 
